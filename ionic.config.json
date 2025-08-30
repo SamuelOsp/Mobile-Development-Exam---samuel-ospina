@@ -1,0 +1,7 @@
+{
+  "name": "Mobile app exam",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

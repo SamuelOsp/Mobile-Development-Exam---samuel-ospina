@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/interfaces/user.interface';
+import { IUserr } from 'src/app/interfaces/user.interface';
 import { Storage } from 'src/app/shared/services/storage';
+import { v4 } from 'uuid';
 
 
 
@@ -32,14 +33,17 @@ export class RegisterPage implements OnInit {
 
   public doRegister(){
     console.log(this.registerForm.value);
-    let users = this.storageSrv.get<IUser[]>("users");
+    let users = this.storageSrv.get<IUserr[]>("users");
     if (!users) {
       users = [];
     }
     const exists = users.find(user => user.email == this.email.value);
     if(exists) throw new Error('The email exist already');
 
-    users.push(this.registerForm.value);
+    users.push({
+      uuid: v4(),
+      ...this.registerForm.value
+    });
     this.storageSrv.set("users", users);
     this.registerForm.reset();
     this.router.navigate(['/login']);

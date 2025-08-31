@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/interfaces/user.interface';
+import { CONSTANTS } from 'src/app/constants/constants';
+import { IUserr } from 'src/app/interfaces/user.interface';
+import { Toast } from 'src/app/shared/providers/toast/toast';
 import { Storage } from 'src/app/shared/services/storage';
 
 @Component({
@@ -17,22 +19,40 @@ export class LoginPage implements OnInit {
 
   constructor(
     private readonly storageSrv: Storage,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly toastSrv: Toast
   ) {
     this.initForm();
   }
 
   ngOnInit() {}
 
-  public onLogin() {
-    console.log(this.loginForm.value);
-    const users = this.storageSrv.get<IUser[]>('users') || [];
-    const user = users.find((u) => u.email == this.email.value);
-    if (!user) throw new Error('The user does not exist');
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
 
-    const isValidPassword = user.password == this.password.value;
-    if (isValidPassword) return this.router.navigate(['/home']);
-    throw new Error('The password does not match');
+  public async onLogin() {
+    console.log(this.loginForm.value);
+    const users = this.storageSrv.get<IUserr[]>(CONSTANTS.USER) || [];
+    console.log(users);
+
+    const user = users.find((u) => u.email === this.email.value);
+    if (!user) {
+      await this.toastSrv.viewToast('should fill all', 3000, 'warning');
+      return;
+    }
+
+    const isValidPassword = user.password === this.password.value;
+    if (isValidPassword) {
+      this.storageSrv.set('AUTH',{
+        uuid: user.uuid,
+      });
+      return this.router.navigate(['/home2']);
+    }
+
+    
+    await this.toastSrv.viewToast('password mismatch', 3000, 'danger');
+    return;
   }
 
   private initForm() {

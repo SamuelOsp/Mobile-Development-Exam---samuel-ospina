@@ -11,6 +11,7 @@ export class ButtonComponent  implements OnInit {
 @Input() type:buttonType = 'submit';
 @Input() color:string = '';
 @Input() value:string = '';
+@Input() disable: boolean = false;
 
   constructor() { }
 

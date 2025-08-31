@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">register</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ion-card>
+      <ion-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+          <app-input
+            label="Name"
+            placeholder="samuel"
+            type="text"
+           [control]="name"
+
+          >
+          </app-input>
+
+          <app-input
+            label="Last name"
+            placeholder="ospina"
+            type="text"
+            [control]="lastname"
+          >
+          </app-input>
+
+          <app-input
+            label="email"
+            placeholder="example@ospina.com"
+            type="email"
+           [control]="email"
+          >
+          </app-input>
+
+          <app-input
+            label="password"
+            placeholder="*******"
+            type="password"
+            [control]="password"
+          >
+          </app-input>
+
+         <app-button type="submit" color="primary" value="register" [disable]="registerForm.invalid"></app-button>
+
+
+
+
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

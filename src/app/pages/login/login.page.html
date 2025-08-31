@@ -12,27 +12,29 @@
   <div class="content-div">
     <ion-card>
       <ion-card-content>
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <ion-item lines="none">
-            <ion-input
+            <app-input
               label="Email"
               type="email"
               placeholder="example@exam.com"
               labelPlacement="floating"
-            ></ion-input>
+              [control]="email"
+            ></app-input>
           </ion-item>
 
           <ion-item lines="none">
-            <ion-input
+            <app-input
               label="Password"
-              type="Password"
+              type="password"
               placeholder="*********"
               labelPlacement="floating"
-            ></ion-input>
+              [control]="password"
+            ></app-input>
           </ion-item>
 
           <ion-item lines="none">
-            <app-button type="submit" color="success" value="login">
+            <app-button type="submit" color="success" value="login" [disable]="loginForm.invalid" >
             </app-button>
           </ion-item>
         </form>

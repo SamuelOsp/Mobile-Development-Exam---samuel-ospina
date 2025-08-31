@@ -13,6 +13,7 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Storage } from './providers/storage/storage';
 
 const components = [ButtonComponent, CardComponent, HeaderComponent,
    InputComponent, LinkComponent, ListComponent, ModalComponent,
@@ -23,6 +24,7 @@ const components = [ButtonComponent, CardComponent, HeaderComponent,
 @NgModule({
   declarations: [...components],
   imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule],
+  providers: [Storage],
   exports: [...components],
 })
 export class SharedModule { }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '../shared/services/storage';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class HomePage {
+  
+  constructor(private readonly storageSrv: Storage) {
 
-  constructor() {}
+  }
 
 }

@@ -13,7 +13,6 @@ import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Storage } from './providers/storage/storage';
 import { UserService } from './services/user-service';
 
 const components = [ButtonComponent, CardComponent, HeaderComponent,

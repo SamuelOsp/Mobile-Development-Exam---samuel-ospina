@@ -1,11 +1,17 @@
-
 <ion-content [fullscreen]="true">
-  <ion-card>
+  <ion-card *ngIf="user">
     <ion-card-content>
-      <ion-text>uuid: {{user.uuid}}</ion-text>
+      <ion-text>Uuid: {{ user.uuid }}</ion-text>
       <br>
-      <ion-text> full name: {{user.name}}  {{user.lastname}}</ion-text>
-      <ion-text> Email: {{user.email}}</ion-text>
+      <ion-text>Full name: {{ user.name }} {{ user.lastname }}</ion-text>
+      <br>
+      <ion-text>Email: {{ user.email }}</ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!user">
+    <ion-card-content>
+      <ion-text>User not found</ion-text>
     </ion-card-content>
   </ion-card>
 </ion-content>

@@ -1,12 +1,12 @@
-<ion-content [fullscreen]="true">
-  
-  @for (item of users; track $index) {
-    <ion-card (click)="goToDetail(item.uuid)">
-      <ion-card-content>
-        {{item.name}} - {{item.lastname}}
-      </ion-card-content>
-    </ion-card>
-  }
+<app-header>
+  News
+</app-header>
 
+<ion-content [fullscreen]="true">
+  <app-card *ngFor="let item of users" (click)="goToDetail(item.uuid)">
+    <ion-card-content>
+      {{ item.name }} - {{ item.lastname }}
+    </ion-card-content>
+  </app-card>
 </ion-content>
 

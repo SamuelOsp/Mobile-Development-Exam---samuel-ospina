@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/interfaces/IUser';
-import { IUserr } from 'src/app/interfaces/user.interface';
+import { IUser } from 'src/app/interfaces/user.interface';
 import { Storage } from 'src/app/shared/services/storage';
 import { UserService } from 'src/app/shared/services/user-service';
+import { CONSTANTS } from 'src/app/constants/constants';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-home',
@@ -12,65 +12,48 @@ import { UserService } from 'src/app/shared/services/user-service';
   styleUrls: ['./home.page.scss'],
   standalone: false
 })
-export class HomePage  {
- public users: IUserr[] = [];
- public email!: FormControl;
- public password!: FormControl;
- public loginForm!: FormGroup;
+export class HomePage implements OnInit {
+  public users: IUser[] = [];
 
-  constructor(private readonly storageSrv: Storage, 
-    private readonly router: Router, 
-    private userSrv: UserService) {
-      this.initForm();
-      const users: IUserr[] = [
+  constructor(
+    private readonly storageSrv: Storage,
+    private readonly router: Router,
+  ) {}
+
+  ngOnInit(): void {
+
+    let users = this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
+    if (users.length === 0) {
+      users = [
         {
-          name: "pepe",
-          lastname: "gonzalez",
-          email: "pepe@gmail.com",
-          password: "1234567890"
+          uuid: v4(),
+          name: 'pepe',
+          lastname: 'gonzalez',
+          email: 'pepe@gmail.com',
+          password: '1234567890',
         },
-
         {
-          name: "maria",
-          lastName: "perez",
-          email: "maria@gmail.com",
-          password: "1234567890"
+          uuid: v4(),
+          name: 'maria',
+          lastname: 'perez',
+          email: 'maria@gmail.com',
+          password: '1234567890',
         },
-
         {
-          name: "andres",
-          lastName: "gonzalez",
-          email: "andres@gmail.com",
-          password: "1234567890"
+          uuid: v4(),
+          name: 'andres',
+          lastname: 'gonzalez',
+          email: 'andres@gmail.com',
+          password: '1234567890',
         },
       ];
-       users.forEach(u=> this.userSrv.signUp(u));
-
-     }
-
-     public doLogin(){
-      this.userSrv.login({
-        email: this.email.value,
-        password: this.password.value
-      });
-      this.router.navigate(['/home2']);
-     }
- 
-    public goToDetail(id: IUserr['uuid']){
-      this.router.navigate(["/detail", id]);
+      this.storageSrv.set(CONSTANTS.USER, users);
     }
 
-    private initForm() {
-    this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.password = new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-    ]);
-    this.loginForm = new FormGroup({
-      email: this.email,
-      password: this.password,
-    });
+    this.users = users;
   }
 
-
+  public goToDetail(id: IUser['uuid']) {
+    this.router.navigate(['/detail', id]);
+  }
 }

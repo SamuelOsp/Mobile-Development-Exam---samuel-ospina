@@ -7,11 +7,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared-module';
+import { MainLayoutModule } from './layouts/main-layout/main-layout-module';
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SharedModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SharedModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, SharedModule, MainLayoutModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SharedModule, ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

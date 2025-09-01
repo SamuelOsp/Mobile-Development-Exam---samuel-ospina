@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guard/auth-guard';
 import { isLoggedGuard } from './guard/is-logged-guard';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { HomePage } from './pages/home/home.page';
 
 const routes: Routes = [
   {
@@ -17,13 +19,13 @@ const routes: Routes = [
       import('./pages/register/register.module').then(
         (m) => m.RegisterPageModule
       ),
+    canActivate: [isLoggedGuard],
   },
 
   {
-    path: 'home2',
+    path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
-    canActivate: [authGuard],
   },
 
   {
@@ -33,6 +35,11 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
 
+  {
+    path: 'home',
+    component: MainLayoutComponent,
+    children: [{ path: 'home', component: HomePage }],
+  },
   {
     path: '',
     redirectTo: 'login',

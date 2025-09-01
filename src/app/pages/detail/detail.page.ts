@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { Storage } from 'src/app/shared/services/storage';
+import { CONSTANTS } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-detail',
@@ -9,22 +11,25 @@ import { Storage } from 'src/app/shared/services/storage';
   styleUrls: ['./detail.page.scss'],
   standalone: false
 })
-export class DetailPage implements OnInit {
-  public user!: IUser;
-  constructor(private readonly activateRouter: ActivatedRoute, private readonly storageSrv: Storage) { }
+export class DetailPage implements OnInit, OnDestroy {
+  public user: IUser | null = null;
+  private sub!: Subscription;
+
+  constructor(
+    private readonly activateRouter: ActivatedRoute,
+    private readonly storageSrv: Storage
+  ) {}
 
   ngOnInit() {
-    this.activateRouter.params.subscribe((params)=>{
-      console.log(params);
-      const users = this.storageSrv.get<IUser[]>("users") || [];
-      const user = users.find(u => u.uuid == params['uuid']);
-      if(user) {
-         this.user = user;
-         console.log(user)
-      }
-     
+    this.sub = this.activateRouter.params.subscribe(params => {
+      const users = this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
+      this.user = users.find(u => u.uuid === params['uuid']) || null;
     });
-  
   }
 
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+  }
 }

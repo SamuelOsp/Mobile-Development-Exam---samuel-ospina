@@ -1,3 +1,9 @@
-<p>
-  principal-news works!
-</p>
+<ion-card *ngIf="article">
+  <img [src]="article.urlToImage" />
+  <ion-card-header>
+    <ion-card-title>{{ article.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    {{ article.description }}
+  </ion-card-content>
+</ion-card>

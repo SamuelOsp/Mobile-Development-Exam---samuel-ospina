@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Browser } from '@capacitor/browser';
 @Component({
   selector: 'app-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss'],
   standalone: false
 })
-export class LinkComponent  implements OnInit {
+export class LinkComponent {
+  @Input() url!: string;
 
-  constructor() { }
+  async openLink() {
+    await Browser.open({ url: this.url });
+  }
 
-  ngOnInit() {}
-
+  async closeLink(){
+    await Browser.close();
+  }
 }

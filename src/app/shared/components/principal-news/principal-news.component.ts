@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IArticle } from 'src/app/interfaces/new.interface';
 
 @Component({
   selector: 'app-principal-news',
@@ -6,10 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./principal-news.component.scss'],
   standalone: false
 })
-export class PrincipalNewsComponent  implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {}
-
+export class PrincipalNewsComponent {
+  @Input() article!: IArticle | null;
 }

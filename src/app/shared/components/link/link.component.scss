@@ -1,0 +1,14 @@
+ion-button {
+  width: 100%;
+  --border-radius: 10px;
+  --background: #222;
+  --color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: transform 0.2s ease, background 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    --background: #000;
+  }
+}

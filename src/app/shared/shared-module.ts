@@ -14,6 +14,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user-service';
+import { Http } from './services/http/http';
 
 const components = [ButtonComponent, CardComponent, HeaderComponent,
    InputComponent, LinkComponent, ListComponent, ModalComponent,
@@ -24,7 +25,7 @@ const components = [ButtonComponent, CardComponent, HeaderComponent,
 @NgModule({
   declarations: [...components],
   imports: [CommonModule, IonicModule, FormsModule, ReactiveFormsModule],
-  providers: [Storage, UserService],
+  providers: [Storage, UserService, Http],
   exports: [...components],
 })
 export class SharedModule { }

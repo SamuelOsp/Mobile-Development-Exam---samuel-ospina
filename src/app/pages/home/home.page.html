@@ -1,12 +1,20 @@
+<ion-menu side="start" contentId="main-content">
+  <app-side-bar></app-side-bar>
+</ion-menu>
+
 <app-header>
-  News
+  <ion-toolbar>
+    <ion-title>News</ion-title>
+  </ion-toolbar>
 </app-header>
 
-<ion-content [fullscreen]="true">
-  <app-card *ngFor="let item of users" (click)="goToDetail(item.uuid)">
-    <ion-card-content>
-      {{ item.name }} - {{ item.lastname }}
-    </ion-card-content>
-  </app-card>
+<ion-content id="main-content">
+  <app-principal-news></app-principal-news>
+  <div class="cards-container">
+    <app-card
+      *ngFor="let item of news"
+      [article]="item"
+      (select)="openModal(item)"
+    ></app-card>
+  </div>
 </ion-content>
-

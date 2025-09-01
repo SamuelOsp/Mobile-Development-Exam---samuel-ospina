@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { IArticle } from 'src/app/interfaces/new.interface';
+import { InAppBrowser } from '@capacitor/inappbrowser';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
-  standalone: false
+  standalone: false,
 })
-export class ModalComponent  implements OnInit {
+export class ModalComponent {
+  @Input() article!: IArticle;
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) {}
 
-  ngOnInit() {}
-
+  async openLink() {
+    await InAppBrowser.openInExternalBrowser({
+      url: this.article.url,
+    });
+  }
+  closeModal() {
+    this.modalCtrl.dismiss();
+  }
 }

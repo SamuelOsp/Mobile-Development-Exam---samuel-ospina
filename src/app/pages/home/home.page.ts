@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { Storage } from 'src/app/shared/services/storage';
-import { UserService } from 'src/app/shared/services/user-service';
-import { CONSTANTS } from 'src/app/constants/constants';
-import { v4 } from 'uuid';
-
+import { Http } from 'src/app/shared/services/http/http';
+import { environment } from 'src/environments/environment';
+import { INews, IArticle } from 'src/app/interfaces/new.interface';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -13,47 +14,30 @@ import { v4 } from 'uuid';
   standalone: false
 })
 export class HomePage implements OnInit {
-  public users: IUser[] = [];
-
+  public news: IArticle[] = [];
+  mainArticle: IArticle | null = null;
   constructor(
     private readonly storageSrv: Storage,
     private readonly router: Router,
+    private httpSrv: Http,
+    private modalCtrl: ModalController
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+  const response = await this.httpSrv.get<INews>(environment.url);
+  this.news = response.articles;
+  this.mainArticle = this.news.length ? this.news[0] : null;
+}
+openDetail(article: IArticle) {
+  this.router.navigate(['/detail', article.title]); 
+}
 
-    let users = this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
-    if (users.length === 0) {
-      users = [
-        {
-          uuid: v4(),
-          name: 'pepe',
-          lastname: 'gonzalez',
-          email: 'pepe@gmail.com',
-          password: '1234567890',
-        },
-        {
-          uuid: v4(),
-          name: 'maria',
-          lastname: 'perez',
-          email: 'maria@gmail.com',
-          password: '1234567890',
-        },
-        {
-          uuid: v4(),
-          name: 'andres',
-          lastname: 'gonzalez',
-          email: 'andres@gmail.com',
-          password: '1234567890',
-        },
-      ];
-      this.storageSrv.set(CONSTANTS.USER, users);
-    }
+async openModal(article: IArticle) {
+  const modal = await this.modalCtrl.create({
+    component: ModalComponent,
+    componentProps: { article }
+  });
+  await modal.present();
+}
 
-    this.users = users;
-  }
-
-  public goToDetail(id: IUser['uuid']) {
-    this.router.navigate(['/detail', id]);
-  }
 }

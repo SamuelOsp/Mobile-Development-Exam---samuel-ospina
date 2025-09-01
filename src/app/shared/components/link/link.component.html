@@ -1,3 +1,13 @@
-<p>
-  link works!
-</p>
+<app-button
+  [value]="'Open Link'"
+  [color]="'primary'"
+  (click)="openLink()"
+>
+</app-button>
+
+<app-button
+  [value]="'Close'"
+  [color]="'danger'"
+  (click)="closeLink()"
+>
+</app-button>

@@ -1,3 +1,14 @@
-<p>
-  modal works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ article.title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img [src]="article.urlToImage" alt="Image" />
+  <p>{{ article.description }}</p>
+  <app-link [url]="article.url"></app-link>
+</ion-content>

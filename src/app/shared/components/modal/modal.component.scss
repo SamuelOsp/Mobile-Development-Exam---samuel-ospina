@@ -1,0 +1,33 @@
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px;
+
+  app-card {
+    margin-bottom: 16px;
+  }
+
+  ion-button {
+    margin-top: 12px;
+    border-radius: 8px;
+    --background: #3880ff;
+    --color: #fff;
+    font-weight: 500;
+    transition: background 0.3s ease;
+
+    &:hover {
+      --background: #3171e0;
+    }
+  }
+}
+
+ion-header {
+  ion-toolbar {
+    background-color: #f9f9f9;
+    ion-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+}

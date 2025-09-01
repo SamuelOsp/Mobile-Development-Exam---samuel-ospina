@@ -1,9 +1,39 @@
-.home {
+.cards-container {
   display: flex;
+  flex-direction: column;
+  align-items: center; /* CENTRA LAS CARTAS */
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.content {
-  flex: 1;
-  padding: 20px;
-  background: #fafafa;
+/* Cada carta ocupa todo el ancho en móviles */
+.cards-container ion-card {
+  width: 100%;
+  max-width: 380px; /* Limita el ancho máximo */
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive: en pantallas grandes, organiza en varias columnas */
+@media (min-width: 768px) {
+  .cards-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cards-container ion-card {
+    width: calc(50% - 16px); /* Dos columnas */
+    max-width: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards-container ion-card {
+    width: calc(33.33% - 16px); /* Tres columnas */
+    max-width: 300px;
+  }
 }

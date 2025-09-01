@@ -1,8 +1,10 @@
-<ion-card class="custom-card">
+<ion-card (click)="onClick()">
+  <img [src]="article.urlToImage" />
   <ion-card-header>
-    {{ user.name }} {{ user.lastname }}
+    <ion-card-title>{{ article.title }}</ion-card-title>
+    <ion-card-subtitle>{{ article.source.name }}</ion-card-subtitle>
   </ion-card-header>
-  <ion-content>
-    Email: {{ user.email }}
-  </ion-content>
+  <ion-card-content>
+    {{ article.description }}
+  </ion-card-content>
 </ion-card>

@@ -1,12 +1,26 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Menú</ion-title>
+    <ion-title>
+      <ion-icon name="person-circle-outline"></ion-icon>
+      Samuel Ospina
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item routerLink="/home">🏠 Home</ion-item>
-    <ion-item button (click)="logout()">🚪 Cerrar sesión</ion-item>
+    <ion-item routerLink="/business">Business</ion-item>
+    <ion-item routerLink="/entertainment">Entertainment</ion-item>
+    <ion-item routerLink="/general">General</ion-item>
+    <ion-item routerLink="/health">Health</ion-item>
+    <ion-item routerLink="/science">Science</ion-item>
+    <ion-item routerLink="/sports">Sports</ion-item>
+    <ion-item routerLink="/technology">Technology</ion-item>
   </ion-list>
+
+  <ion-footer>
+    <ion-button expand="block" color="danger" (click)="logout()">
+      🚪 Logout
+    </ion-button>
+  </ion-footer>
 </ion-content>

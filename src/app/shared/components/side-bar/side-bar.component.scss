@@ -1,15 +1,13 @@
-.sidebar {
-  width: 200px;
-  background: #f1f1f1;
-  height: 100vh;
-  padding: 10px;
+ion-header {
+  text-align: center;
+  color: #fff;
 }
 
-.sidebar button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  background: #d9534f;
-  color: white;
-  cursor: pointer;
+ion-list {
+  margin-top: 10px;
+}
+
+ion-item {
+  font-size: 16px;
+  font-weight: 500;
 }

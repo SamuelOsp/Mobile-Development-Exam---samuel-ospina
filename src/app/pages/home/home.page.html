@@ -2,19 +2,20 @@
   <app-side-bar></app-side-bar>
 </ion-menu>
 
-<app-header>
-  <ion-toolbar>
-    <ion-title>News</ion-title>
-  </ion-toolbar>
-</app-header>
+<app-header></app-header>
 
 <ion-content id="main-content">
-  <app-principal-news></app-principal-news>
+
+  @if (mainArticle) {
+    <app-principal-news [article]="mainArticle"></app-principal-news>
+  }
+
   <div class="cards-container">
-    <app-card
-      *ngFor="let item of news"
-      [article]="item"
-      (select)="openModal(item)"
-    ></app-card>
+    @for (item of news; track $index) {
+      <app-card
+        [article]="item"
+        (select)="openModal(item)"
+      ></app-card>
+    }
   </div>
 </ion-content>

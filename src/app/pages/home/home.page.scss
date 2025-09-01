@@ -1,23 +1,21 @@
 .cards-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* CENTRA LAS CARTAS */
+  align-items: center; 
   gap: 16px;
   padding: 16px;
   width: 100%;
   box-sizing: border-box;
 }
 
-/* Cada carta ocupa todo el ancho en móviles */
 .cards-container ion-card {
   width: 100%;
-  max-width: 380px; /* Limita el ancho máximo */
+  max-width: 380px; 
   margin: 0 auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive: en pantallas grandes, organiza en varias columnas */
 @media (min-width: 768px) {
   .cards-container {
     flex-direction: row;
@@ -26,14 +24,14 @@
   }
 
   .cards-container ion-card {
-    width: calc(50% - 16px); /* Dos columnas */
+    width: calc(50% - 16px); 
     max-width: 320px;
   }
 }
 
 @media (min-width: 1024px) {
   .cards-container ion-card {
-    width: calc(33.33% - 16px); /* Tres columnas */
+    width: calc(33.33% - 16px); 
     max-width: 300px;
   }
 }

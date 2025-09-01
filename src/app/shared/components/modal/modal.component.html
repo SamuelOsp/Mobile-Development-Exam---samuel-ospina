@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ article.title }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="closeModal()">Cerrar</ion-button>
+      <ion-button (click)="setClose()">Close</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <img [src]="article.urlToImage" alt="Image" />
-  <p>{{ article.description }}</p>
-  <app-link [url]="article.url"></app-link>
+<ion-content class="ion-padding" *ngIf="article">
+  <h1 class="title">{{ article.title }}</h1>
+  <img [src]="article.urlToImage" alt="">
+  <p>{{ article.content }}</p>
+  <p class="link" (click)="abrirNavegador()">Show more information in browser</p>
 </ion-content>

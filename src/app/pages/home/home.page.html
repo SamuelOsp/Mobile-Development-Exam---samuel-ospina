@@ -5,17 +5,10 @@
 <app-header></app-header>
 
 <ion-content id="main-content">
-
-  @if (mainArticle) {
-    <app-principal-news [article]="mainArticle"></app-principal-news>
+  @if (news) {
+    <app-principal-news
+      [articles]="news"
+      (select)="openModal($event)">
+    </app-principal-news>
   }
-
-  <div class="cards-container">
-    @for (item of news; track $index) {
-      <app-card
-        [article]="item"
-        (select)="openModal(item)"
-      ></app-card>
-    }
-  </div>
 </ion-content>

@@ -1,15 +1,6 @@
-.principal-news ion-card {
-  width: 95%;
-  max-width: 600px;
-  margin: 16px auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-.principal-news ion-card img {
-  width: 100%;
-  max-height: 220px;
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
 }

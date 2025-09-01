@@ -1,7 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IArticle } from 'src/app/interfaces/new.interface';
-import { InAppBrowser } from '@capacitor/inappbrowser';
+import { Platform } from '@ionic/angular';
+import { Browser } from '@capacitor/browser';
 import { ModalController } from '@ionic/angular';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -9,16 +11,23 @@ import { ModalController } from '@ionic/angular';
   standalone: false,
 })
 export class ModalComponent {
-  @Input() article!: IArticle;
+  @Input() article: IArticle | null = null;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private readonly platform: Platform,
+    private readonly modalCtrl: ModalController
+  ) {}
 
-  async openLink() {
-    await InAppBrowser.openInExternalBrowser({
-      url: this.article.url,
-    });
-  }
-  closeModal() {
+  setClose() {
     this.modalCtrl.dismiss();
+  }
+
+  async abrirNavegador() {
+    if (this.platform.is('android') && this.article) {
+      await Browser.open({
+        url: this.article.url,
+        presentationStyle: 'fullscreen'
+      });
+    }
   }
 }

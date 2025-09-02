@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guard/auth-guard';
 import { isLoggedGuard } from './guard/is-logged-guard';
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { HomePage } from './pages/home/home.page';
+
 
 const routes: Routes = [
   {
@@ -28,6 +27,14 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
 
+
+{
+    path: 'profile/:uuid',
+    loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
+  
+  },
+
+
   {
     path: 'detail/:uuid',
     loadChildren: () =>
@@ -35,11 +42,6 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
 
-  {
-    path: 'home',
-    component: MainLayoutComponent,
-    children: [{ path: 'home', component: HomePage }],
-  },
   {
     path: '',
     redirectTo: 'login',
@@ -51,6 +53,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
+  
 ];
 
 @NgModule({

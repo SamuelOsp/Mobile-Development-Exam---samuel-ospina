@@ -49,6 +49,10 @@ export class RegisterPage implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
   private initForm() {
     this.name = new FormControl('', [Validators.required]);
     this.lastname = new FormControl('', [Validators.required]);

@@ -1,26 +1,33 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      <ion-icon name="person-circle-outline"></ion-icon>
+    <ion-title >
+      <ion-icon name="person-circle-outline" ></ion-icon>
       Samuel Ospina
     </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-item (click)="goToProfile()">
+    <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+    <ion-label>Perfil</ion-label>
+  </ion-item>
+
+
   <ion-list>
-    <ion-item routerLink="/business">Business</ion-item>
-    <ion-item routerLink="/entertainment">Entertainment</ion-item>
-    <ion-item routerLink="/general">General</ion-item>
-    <ion-item routerLink="/health">Health</ion-item>
-    <ion-item routerLink="/science">Science</ion-item>
-    <ion-item routerLink="/sports">Sports</ion-item>
-    <ion-item routerLink="/technology">Technology</ion-item>
+    <ion-item (click)="selectCategory('business')">Business</ion-item>
+    <ion-item (click)="selectCategory('entertainment')">Entertainment</ion-item>
+    <ion-item (click)="selectCategory('general')">General</ion-item>
+    <ion-item (click)="selectCategory('health')">Health</ion-item>
+    <ion-item (click)="selectCategory('science')">Science</ion-item>
+    <ion-item (click)="selectCategory('sports')">Sports</ion-item>
+    <ion-item (click)="selectCategory('technology')">Technology</ion-item> 
   </ion-list>
 
-  <ion-footer>
-    <ion-button expand="block" color="danger" (click)="logout()">
-      🚪 Logout
-    </ion-button>
-  </ion-footer>
-</ion-content>
+
+<ion-footer>
+  <ion-button expand="block" (click)="logout()">
+     Logout 
+  </ion-button>
+</ion-footer>
+

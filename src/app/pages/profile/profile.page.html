@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="user">
+ 
+  <div class="grid-container">
+    <ion-card class="grid-card">
+      <ion-card-content>
+        <ion-icon name="person-outline" size="large"></ion-icon>
+        <h3>Nombre</h3>
+        <p>{{ user.name }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="grid-card">
+      <ion-card-content>
+        <ion-icon name="people-outline" size="large"></ion-icon>
+        <h3>Apellido</h3>
+        <p>{{ user.lastname }}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="grid-card">
+      <ion-card-content>
+        <ion-icon name="mail-outline" size="large"></ion-icon>
+        <h3>Email</h3>
+        <p>{{ user.email }}</p>
+      </ion-card-content>
+    </ion-card>
+    <br>
+    <br>
+    <br>
+    <br>
+    <ion-item lines="none">
+            <app-button color="primary" (click)="goToHome()" value="Go to home"></app-button>
+          </ion-item>

@@ -18,6 +18,7 @@ export class ModalComponent {
       url: this.article.url,
     });
   }
+  
   closeModal() {
     this.modalCtrl.dismiss();
   }

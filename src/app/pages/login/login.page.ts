@@ -32,22 +32,23 @@ export class LoginPage implements OnInit {
   }
 
   public async onLogin() {
-    const users = this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
-    const user = users.find((u) => u.email === this.email.value);
+  const users = this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
+  const user = users.find((u) => u.email === this.email.value);
 
-    if (!user) {
-      await this.toastSrv.viewToast('User not found', 3000, 'warning');
-      return;
-    }
-
-    if (user.password !== this.password.value) {
-      await this.toastSrv.viewToast('Password mismatch', 3000, 'danger');
-      return;
-    }
-
-    this.storageSrv.set(CONSTANTS.AUTH, { uuid: user.uuid });
-    this.router.navigate(['/home']);
+  if (!user) {
+    await this.toastSrv.viewToast('User not found', 3000, 'warning');
+    return;
   }
+
+  if (user.password !== this.password.value) {
+    await this.toastSrv.viewToast('Password mismatch', 3000, 'danger');
+    return;
+  }
+
+  this.storageSrv.set(CONSTANTS.AUTH, user);
+
+  this.router.navigate(['/home']);
+}
 
   private initForm() {
     this.email = new FormControl('', [Validators.required, Validators.email]);

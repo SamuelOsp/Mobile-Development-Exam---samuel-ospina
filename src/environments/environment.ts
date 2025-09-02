@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://newsapi.org/v2/everything?q=keyword&apiKey=97c4a78c1ebe4dff82c2c32eb08ef81a',
+  url: 'https://newsapi.org/v2/top-headlines?country=us',
   API_KEY:
   '97c4a78c1ebe4dff82c2c32eb08ef81a',
 };

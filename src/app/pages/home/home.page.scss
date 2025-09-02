@@ -1,37 +1,21 @@
 .cards-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
   padding: 16px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.cards-container ion-card {
-  width: 100%;
-  max-width: 380px; 
   margin: 0 auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-@media (min-width: 768px) {
-  .cards-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .cards-container ion-card {
-    width: calc(50% - 16px); 
-    max-width: 320px;
+  max-width: 1200px;
+  
+  // Asegurar que las tarjetas ocupen el espacio completo
+  app-card {
+    display: block;
+    height: 100%;
   }
 }
 
-@media (min-width: 1024px) {
-  .cards-container ion-card {
-    width: calc(33.33% - 16px); 
-    max-width: 300px;
-  }
+// Resetear cualquier margen de Ionic
+.cards-container ion-card {
+  margin: 0;
 }
+
+

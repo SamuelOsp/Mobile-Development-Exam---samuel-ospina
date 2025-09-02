@@ -41,6 +41,7 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  padding: 16px;
 }   
 @media (max-width: 600px) {
   .register-card {
@@ -48,7 +49,6 @@
   }
 }
 
-/* ✅ Ajuste para columnas (siempre 2, incluso en móvil) */
 .grid-two-cols {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -56,14 +56,15 @@
   margin-bottom: 16px;
 
   ion-card.input-card {
-    margin: 0;
+    margin: 0 !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
   }
 }
 
-/* ✅ Estilo para cada card de input */
+
 .input-card {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
@@ -110,7 +111,7 @@ app-input {
   margin-top: 24px;
 }
 
-/* ✅ Botón principal */
+
 .primary-button::part(native) {
   background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
   border-radius: 10px;
@@ -124,7 +125,6 @@ app-input {
   }
 }
 
-/* ✅ Botón secundario */
 .secondary-button::part(native) {
   background: transparent;
   border: 1px solid #4a90e2;
@@ -138,7 +138,6 @@ app-input {
   }
 }
 
-/* ✅ Ajustes para modo oscuro */
 @media (prefers-color-scheme: dark) {
   .register-container {
     background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
@@ -163,7 +162,6 @@ app-input {
   }
 }
 
-/* ✅ Responsive (ajustamos tamaño, pero seguimos mostrando 2 columnas) */
 @media (max-width: 400px) {
   .register-card {
     max-width: 95%;
@@ -179,4 +177,32 @@ app-input {
       padding: 8px;
     }
   }
+}
+
+.country-card ion-card-content {
+  padding: 8px; 
+}
+.country-card .custom-item {
+  --min-height: 40px; 
+  margin: 0;
+}
+.country-card {
+  max-height: 80px;
+  padding: 8px !important; 
+}
+country-card .custom-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4px 8px; 
+}
+
+.country-card .custom-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4px 8px;
+  min-height: 56px; 
 }

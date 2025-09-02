@@ -14,15 +14,11 @@
   </ion-item>
 
 
-  <ion-list>
-    <ion-item (click)="selectCategory('business')">Business</ion-item>
-    <ion-item (click)="selectCategory('entertainment')">Entertainment</ion-item>
-    <ion-item (click)="selectCategory('general')">General</ion-item>
-    <ion-item (click)="selectCategory('health')">Health</ion-item>
-    <ion-item (click)="selectCategory('science')">Science</ion-item>
-    <ion-item (click)="selectCategory('sports')">Sports</ion-item>
-    <ion-item (click)="selectCategory('technology')">Technology</ion-item> 
-  </ion-list>
+  <app-list 
+  [items]="categories" 
+  (itemSelected)="selectCategory($event)">
+</app-list>
+
 
 
 <ion-footer>

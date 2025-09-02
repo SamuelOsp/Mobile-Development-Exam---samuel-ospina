@@ -1,3 +1,5 @@
-<p>
-  list works!
-</p>
+<ion-list class="custom-list">
+  <ion-item *ngFor="let item of items" (click)="selectItem(item.key)">
+    <ion-label>{{ item.label }}</ion-label>
+  </ion-item>
+</ion-list>

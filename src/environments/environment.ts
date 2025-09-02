@@ -7,6 +7,9 @@ export const environment = {
   url: 'https://newsapi.org/v2/top-headlines?country=us',
   API_KEY:
   '732def3c27c54156b0bd16e6739faf6d',
+  apiUrls: {
+    countries: 'https://countriesnow.space/api/v0.1/countries/flag/unicode'
+  }
 };
 
 /*

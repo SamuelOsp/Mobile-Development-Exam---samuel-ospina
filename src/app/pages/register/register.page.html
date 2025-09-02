@@ -1,63 +1,74 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="register-container">
+  <ion-card class="register-card">
+    <ion-card-content>
+       <h1 class="register-title">Register</h1>
+      <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+        
+        <div class="grid-two-cols">
+          <ion-card class="input-card">
+            <ion-card-content>
+              <app-input
+                label="Name"
+                placeholder="Cesar"
+                type="text"
+                [control]="name">
+              </app-input>
+            </ion-card-content>
+          </ion-card>
+          
+          <ion-card class="input-card">
+            <ion-card-content>
+              <app-input
+                label="Last name"
+                placeholder="Barrera"
+                type="text"
+                [control]="lastname">
+              </app-input>
+            </ion-card-content>
+          </ion-card>
+        </div>
 
-  <div>
-    <ion-card>
-      <ion-card-content>
-        <form [formGroup]="registerForm" (ngSubmit)="doRegister()">
-          <app-input
-            label="Name"
-            placeholder="samuel"
-            type="text"
-           [control]="name"
+        <ion-card class="input-card">
+          <ion-card-content>
+            <ion-item class="custom-item" lines="none">
+              <ion-label position="floating">Country</ion-label>
+              <ion-select interface="popover">
+                <ion-select-option value="us">United States</ion-select-option>
+                <ion-select-option value="mx">Mexico</ion-select-option>
+                <ion-select-option value="co">Colombia</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-card class="input-card">
+          <ion-card-content>
+            <app-input
+              label="Email"
+              placeholder="jane@doe.com"
+              type="email"
+              [control]="email">
+            </app-input>
+          </ion-card-content>
+        </ion-card>
+        
+        <ion-card class="input-card">
+          <ion-card-content>
+            <app-input
+              label="Password"
+              placeholder="*******"
+              type="password"
+              [control]="password">
+            </app-input>
+          </ion-card-content>
+        </ion-card>
 
-          >
-          </app-input>
-
-          <app-input
-            label="Last name"
-            placeholder="ospina"
-            type="text"
-            [control]="lastname"
-          >
-          </app-input>
-
-          <app-input
-            label="email"
-            placeholder="example@ospina.com"
-            type="email"
-           [control]="email"
-          >
-          </app-input>
-
-          <app-input
-            label="password"
-            placeholder="*******"
-            type="password"
-            [control]="password"
-          >
-          </app-input>
-          <ion-item lines="none">
-            <app-button color="primary" (click)="goToLogin()" value="Go to Login"></app-button>
-          </ion-item>
-
-         <app-button type="submit" color="primary" value="register" [disable]="registerForm.invalid"></app-button>
-
-
-
-
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </div>
+        <div class="button-group">
+          <app-button color="primary" (click)="goToLogin()" value="Go to Login" class="secondary-button"></app-button>
+          <app-button type="submit" color="primary" value="Register" [disable]="registerForm.invalid" class="primary-button"></app-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

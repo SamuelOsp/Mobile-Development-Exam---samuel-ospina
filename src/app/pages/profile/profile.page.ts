@@ -24,8 +24,8 @@ export class ProfilePage implements OnInit {
     });
   }
 goToHome() {
-    this.router.navigate(['/register']);
-  }
+  this.router.navigateByUrl('/home', { replaceUrl: true }); 
+}
 
 
 

@@ -1,0 +1,182 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  min-height: 100%;
+}
+.register-title {
+  text-align: left;
+  font-size: 26px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+
+.custom-toolbar {
+  --background: #ffffff;
+  --color: rgb(0, 0, 0);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  }
+}
+
+.register-card {
+  width: 100%;
+  max-width: 500px; 
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}   
+@media (max-width: 600px) {
+  .register-card {
+    margin-top: 10vh;
+  }
+}
+
+/* ✅ Ajuste para columnas (siempre 2, incluso en móvil) */
+.grid-two-cols {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+
+  ion-card.input-card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ✅ Estilo para cada card de input */
+.input-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba(160, 174, 192, 0.4);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  ion-card-content {
+    padding: 16px;
+  }
+}
+
+.custom-item {
+  --background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  margin-bottom: 0;
+
+  ion-label {
+    color: #4a5568;
+    font-weight: 500;
+  }
+
+  ion-select {
+    width: 100%;
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+}
+
+app-input {
+  display: block;
+  margin-bottom: 0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ✅ Botón principal */
+.primary-button::part(native) {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+    transform: translateY(-2px);
+  }
+}
+
+/* ✅ Botón secundario */
+.secondary-button::part(native) {
+  background: transparent;
+  border: 1px solid #4a90e2;
+  color: #4a90e2;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(74, 144, 226, 0.1);
+  }
+}
+
+/* ✅ Ajustes para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .register-container {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  }
+
+  .register-card {
+    background: rgba(26, 32, 44, 0.8);
+    border: 1px solid rgba(74, 85, 104, 0.3);
+  }
+
+  .input-card {
+    border: 1px solid rgba(74, 85, 104, 0.3);
+    background: rgba(26, 32, 44, 0.5);
+  }
+
+  .custom-item {
+    --background: rgba(45, 55, 72, 0.4);
+
+    ion-label {
+      color: #e2e8f0;
+    }
+  }
+}
+
+/* ✅ Responsive (ajustamos tamaño, pero seguimos mostrando 2 columnas) */
+@media (max-width: 400px) {
+  .register-card {
+    max-width: 95%;
+    padding: 8px;
+  }
+
+  .grid-two-cols {
+    gap: 8px;
+  }
+
+  ion-card.input-card {
+    ion-card-content {
+      padding: 8px;
+    }
+  }
+}

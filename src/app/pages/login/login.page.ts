@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { CONSTANTS } from 'src/app/constants/constants';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { Toast } from 'src/app/shared/providers/toast/toast';
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
   constructor(
     private readonly storageSrv: Storage,
     private readonly router: Router,
-    private readonly toastSrv: Toast
+    private readonly toastSrv: Toast,
+    private navCtrl: NavController,
   ) {
     this.initForm();
   }
@@ -32,7 +34,7 @@ export class LoginPage implements OnInit {
   }
 
   public async onLogin() {
-  const users = this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
+  const users = await this.storageSrv.get<IUser[]>(CONSTANTS.USER) || [];
   const user = users.find((u) => u.email === this.email.value);
 
   if (!user) {
@@ -45,17 +47,23 @@ export class LoginPage implements OnInit {
     return;
   }
 
-  this.storageSrv.set(CONSTANTS.AUTH, user);
+  if (!user.password || user.password.trim() === '') {
+  await this.toastSrv.viewToast('User has no password set', 3000, 'danger');
+  return;
+}
 
-  this.router.navigate(['/home']);
+  await this.storageSrv.set(CONSTANTS.AUTH, user);
+
+  this.navCtrl.navigateRoot('/home');
 }
 
   private initForm() {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [
       Validators.required,
-      Validators.minLength(3),
+      Validators.minLength(6),
     ]);
+
     this.loginForm = new FormGroup({
       email: this.email,
       password: this.password,

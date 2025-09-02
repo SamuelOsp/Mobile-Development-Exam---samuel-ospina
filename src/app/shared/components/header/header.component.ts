@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../../services/category';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class HeaderComponent  implements OnInit {
+loading = false;
+  error: string | null = null;
+  constructor( private categoryService: Category) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.categoryService.currentCategory$.subscribe(category => {
+      this.loadNews(category);
+    });
+  }
+  async loadNews(category: string) {
+    this.loading = true;
+    this.error = null;
+  }
 
-  ngOnInit() {}
 
+ 
 }

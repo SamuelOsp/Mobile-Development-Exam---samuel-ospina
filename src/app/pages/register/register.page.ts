@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { CONSTANTS } from 'src/app/constants/constants';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { Storage } from 'src/app/shared/services/storage';
@@ -21,43 +22,53 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private readonly storageSrv: Storage,
-    private readonly router: Router
+    private readonly router: Router,
+    private navCtrl: NavController,
   ) {
     this.initForm();
   }
 
   ngOnInit() {}
 
-  public doRegister() {
+  public  async doRegister() {
     console.log(this.registerForm.value);
-    let users = this.storageSrv.get<IUser[]>(CONSTANTS.USER);
+    let users = await this.storageSrv.get<IUser[]>(CONSTANTS.USER);
     if (!users) {
       users = [];
     }
-    const exists = users.find((user) => user.email == this.email.value);
-    if (exists) throw new Error('The email exist already');
+    const exists = users.find((user) => user.email === this.email.value);
+    if (exists) {
+      alert('The email already exists'); 
+      return;
+    }
 
-    users.push({
+    const newUser: IUser = {
       uuid: v4(),
       name: this.name.value,
       lastname: this.lastname.value,
       email: this.email.value,
       password: this.password.value,
-    });
-    this.storageSrv.set(CONSTANTS.USER, users);
+    };
+
+    users.push(newUser);
+
+    await this.storageSrv.set(CONSTANTS.USER, users);
+
     this.registerForm.reset();
-    this.router.navigate(['/login']);
+
+    
+    this.navCtrl.navigateRoot('/login');
   }
 
   goToLogin() {
-    this.router.navigate(['/login']);
+    this.navCtrl.navigateRoot('/login');
   }
 
   private initForm() {
     this.name = new FormControl('', [Validators.required]);
     this.lastname = new FormControl('', [Validators.required]);
     this.email = new FormControl('', [Validators.required, Validators.email]);
-    this.password = new FormControl('', [Validators.required]);
+    this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
     this.registerForm = new FormGroup({
       name: this.name,
       lastname: this.lastname,

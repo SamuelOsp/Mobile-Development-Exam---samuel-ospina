@@ -4,16 +4,19 @@ import { Storage } from '../../services/storage';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { Category } from '../../services/category';
-import { MenuController } from '@ionic/angular';
+import {
+  LoadingController,
+  MenuController,
+  NavController,
+} from '@ionic/angular';
 
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.scss'],
-  standalone: false
+  standalone: false,
 })
-export class SideBarComponent  implements OnInit {
-
+export class SideBarComponent implements OnInit {
   categories = [
     { key: 'general', label: 'General' },
     { key: 'business', label: 'Negocios' },
@@ -24,27 +27,43 @@ export class SideBarComponent  implements OnInit {
     { key: 'entertainment', label: 'Entretenimiento' },
   ];
 
-  constructor(private storage: Storage, private router: Router, private categoryService: Category,
+  constructor(
+    private storageSrv: Storage,
+    private router: Router,
+    private categoryService: Category,
     private menuCtrl: MenuController,
-  ) { }
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {}
 
-selectCategory(category: string) {
+  selectCategory(category: string) {
     this.categoryService.setCategory(category);
-    this.menuCtrl.close(); 
+    this.menuCtrl.close();
   }
-  
+
   async logout() {
-  await this.storage.remove(CONSTANTS.AUTH); 
-  this.router.navigate(['/login']); 
-}
+    await this.storageSrv.remove(CONSTANTS.AUTH);
+    const loading = await this.loadingCtrl.create({
+      message: 'Cerrando sesión...',
+      duration: 1500,
+    });
+    await loading.present();
 
+    this.storageSrv.remove(CONSTANTS.AUTH);
+    sessionStorage.clear();
 
-   goToProfile() {
-  const user = this.storage.get<IUser>(CONSTANTS.AUTH);
-  if (user) {
-    this.router.navigate(['/profile', user.uuid]);
+    window.location.reload();
+    
+    await loading.onDidDismiss();
+    this.navCtrl.navigateRoot('/login');
   }
-}
+
+  goToProfile() {
+    const user = this.storageSrv.get<IUser>(CONSTANTS.AUTH);
+    if (user) {
+      this.navCtrl.navigateRoot(['/profile', user.uuid]);
+    }
+  }
 }

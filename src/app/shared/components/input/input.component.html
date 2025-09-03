@@ -1,10 +1,11 @@
-<ion-input
-  [type]="type"
-  [label]="label"
-  [placeholder]="placeholder"
-  labelPlacement="floating"
-  (keyup)="onType($event)"
-  [formControl]="control"
-  
->
-</ion-input>
+<div class="input-wrapper">
+  <label class="input-label">{{ label }}</label>
+  <ion-input
+    [type]="type"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [value]="value"
+    (ionInput)="onInputChange($event)"
+    (ionBlur)="onBlur()">
+  </ion-input>
+</div>

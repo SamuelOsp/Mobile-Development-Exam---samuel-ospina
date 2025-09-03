@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { CONSTANTS } from 'src/app/constants/constants';
 import { IUser } from 'src/app/interfaces/user.interface';

@@ -1,29 +1,20 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title >
-      <ion-icon name="person-circle-outline" ></ion-icon>
-      Samuel Ospina
+    <ion-title>
+      <ion-icon name="person-circle-outline"></ion-icon>
+      {{ user?.name }} {{ user?.lastname }}
     </ion-title>
-    
   </ion-toolbar>
 </ion-header>
 
 <ion-item (click)="goToProfile()">
-    <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-    <ion-label>Perfil</ion-label>
-  </ion-item>
+  <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+  <ion-label>Perfil</ion-label>
+</ion-item>
 
-
-  <app-list 
-  [items]="categories" 
-  (itemSelected)="selectCategory($event)">
+<app-list [items]="categories" (itemSelected)="selectCategory($event)">
 </app-list>
 
-
-
 <ion-footer>
-  <ion-button expand="block" (click)="logout()">
-     Logout 
-  </ion-button>
+  <ion-button expand="block" (click)="logout()"> Logout </ion-button>
 </ion-footer>
-

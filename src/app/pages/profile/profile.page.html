@@ -5,35 +5,80 @@
 </ion-header>
 
 <ion-content *ngIf="user">
- 
-  <div class="grid-container">
-    <ion-card class="grid-card">
-      <ion-card-content>
-        <ion-icon name="person-outline" size="large"></ion-icon>
-        <h3>Nombre</h3>
-        <p>{{ user.name }}</p>
-      </ion-card-content>
-    </ion-card>
+  <form [formGroup]="profileForm">
+    <div class="grid-container">
+      <ion-card class="grid-card">
+        <ion-card-content>
+          <ion-icon name="person-outline" size="large"></ion-icon>
+          <app-input
+            label="Nombre"
+            placeholder="Ingresa tu nombre"
+            formControlName="name">
+          </app-input>
+        </ion-card-content>
+      </ion-card>
 
-    <ion-card class="grid-card">
-      <ion-card-content>
-        <ion-icon name="people-outline" size="large"></ion-icon>
-        <h3>Apellido</h3>
-        <p>{{ user.lastname }}</p>
-      </ion-card-content>
-    </ion-card>
+      <ion-card class="grid-card">
+        <ion-card-content>
+          <ion-icon name="people-outline" size="large"></ion-icon>
+          <app-input
+            label="Apellido"
+            placeholder="Ingresa tu apellido"
+            formControlName="lastname">
+          </app-input>
+        </ion-card-content>
+      </ion-card>
 
-    <ion-card class="grid-card">
-      <ion-card-content>
-        <ion-icon name="mail-outline" size="large"></ion-icon>
-        <h3>Email</h3>
-        <p>{{ user.email }}</p>
-      </ion-card-content>
-    </ion-card>
-    <br>
-    <br>
-    <br>
-    <br>
+      <ion-card class="grid-card">
+        <ion-card-content>
+          <ion-icon name="mail-outline" size="large"></ion-icon>
+          <app-input
+            label="Email"
+            type="email"
+            placeholder="Ingresa tu correo"
+            formControlName="email">
+          </app-input>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="grid-card">
+        <ion-card-content>
+          <ion-icon name="flag-outline" size="large"></ion-icon>
+          <app-select
+            (countrySelected)="profileForm.get('country')?.setValue($event)">
+          </app-select>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="grid-card">
+        <ion-card-content>
+          <ion-icon name="lock-closed-outline" size="large"></ion-icon>
+          <app-input
+            label="Contraseña"
+            type="password"
+            placeholder="Nueva contraseña (opcional)"
+            formControlName="password">
+          </app-input>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
     <ion-item lines="none">
-            <app-button color="primary" (click)="goToHome()" value="Go to home"></app-button>
-          </ion-item>
+      <app-button
+        color="primary"
+        (click)="onSubmit()"
+        value="Guardar cambios">
+      </app-button>
+    </ion-item>
+
+    <ion-item lines="none">
+      <app-button
+        color="primary"
+        (click)="goToHome()"
+        value="Home">
+      </app-button>
+    </ion-item>
+
+
+  </form>
+</ion-content>

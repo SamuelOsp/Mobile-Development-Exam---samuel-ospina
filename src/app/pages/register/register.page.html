@@ -10,7 +10,7 @@
                 label="Name"
                 placeholder="Samuel"
                 type="text"
-                [control]="name"
+                formControlName="name"
               >
               </app-input>
             </ion-card-content>
@@ -22,7 +22,7 @@
                 label="Last name"
                 placeholder="Ospina"
                 type="text"
-                [control]="lastname"
+                formControlName="lastname"
               >
               </app-input>
             </ion-card-content>
@@ -31,12 +31,12 @@
 
         <ion-card class="input-card country-card">
           <ion-card-content>
-            <!-- <ion-item class="custom-item" lines="none"> -->
+        
               <ion-label position="stacked">Country</ion-label>
               <app-select
                 (countrySelected)="country.setValue($event)"
               ></app-select>
-            <!-- </ion-item> -->
+
           </ion-card-content>
         </ion-card>
 
@@ -46,7 +46,7 @@
               label="Email"
               placeholder="Samuel@gmail.com"
               type="email"
-              [control]="email"
+              formControlName="email"
             >
             </app-input>
           </ion-card-content>
@@ -58,7 +58,7 @@
               label="Password"
               placeholder="******"
               type="password"
-              [control]="password"
+              formControlName="password"
             >
             </app-input>
           </ion-card-content>

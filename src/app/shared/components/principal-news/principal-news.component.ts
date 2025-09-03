@@ -9,4 +9,5 @@ import { IArticle } from 'src/app/interfaces/new.interface';
 })
 export class PrincipalNewsComponent {
   @Input() article!: IArticle | null;
+  
 }

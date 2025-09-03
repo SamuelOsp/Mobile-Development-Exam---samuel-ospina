@@ -54,7 +54,7 @@ try {
       this.mainArticle = this.news.length ? this.news[0] : null;
     } catch (e: any) {
       console.error(e);
-      this.error = 'No se pudieron cargar las noticias. Intenta nuevamente.';
+      this.error = 'The news could not load correctly, try again';
       this.news = [];
       this.mainArticle = null;
     } finally {

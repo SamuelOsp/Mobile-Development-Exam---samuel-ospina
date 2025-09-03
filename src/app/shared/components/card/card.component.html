@@ -1,10 +1,29 @@
 <ion-card (click)="onClick()">
-  <img [src]="article.urlToImage" />
+  <img [src]="article.urlToImage || 'assets/placeholder.jpg'" alt="News image" />
+
   <ion-card-header>
     <ion-card-title>{{ article.title }}</ion-card-title>
-    <ion-card-subtitle>{{ article.source.name }}</ion-card-subtitle>
+    <ion-card-subtitle>
+      {{ article.source.name }}
+      <span *ngIf="article.author"> - {{ article.author }}</span>
+    </ion-card-subtitle>
   </ion-card-header>
+
   <ion-card-content>
-    {{ article.description }}
+    <p>{{ article.description }}</p>
+
+    <ion-text color="medium">
+      <small>
+         {{ article.publishedAt | date:'medium' }}
+      </small>
+    </ion-text>
+
+    <ion-button 
+      fill="clear" 
+      color="primary" 
+      size="small" 
+      (click)="onClick(); $event.stopPropagation()">
+      See more
+    </ion-button>
   </ion-card-content>
 </ion-card>

@@ -17,6 +17,7 @@ import {
   standalone: false,
 })
 export class SideBarComponent implements OnInit {
+  user: IUser | null = null;
   categories = [
     { key: 'general', label: 'General' },
     { key: 'business', label: 'Negocios' },
@@ -36,7 +37,12 @@ export class SideBarComponent implements OnInit {
     private navCtrl: NavController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.storageSrv.get<IUser>(CONSTANTS.AUTH);
+  }
+  async ionViewWillEnter() {
+    this.user = this.storageSrv.get<IUser>(CONSTANTS.AUTH);
+  }
 
   selectCategory(category: string) {
     this.categoryService.setCategory(category);
@@ -55,14 +61,15 @@ export class SideBarComponent implements OnInit {
     sessionStorage.clear();
 
     window.location.reload();
-    
+
     await loading.onDidDismiss();
     this.navCtrl.navigateRoot('/login');
   }
 
-  goToProfile() {
-    const user = this.storageSrv.get<IUser>(CONSTANTS.AUTH);
+  async goToProfile() {
+    const user = await this.storageSrv.get<IUser>(CONSTANTS.AUTH);
     if (user) {
+      this.menuCtrl.close();
       this.navCtrl.navigateRoot(['/profile', user.uuid]);
     }
   }

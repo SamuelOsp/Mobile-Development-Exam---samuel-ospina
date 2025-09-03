@@ -1,14 +1,27 @@
-<div class="principal-news">
-  @if (article) {
-      <img [src]="article.urlToImage" />
-      <ion-card-header>
-        <ion-card-title>{{ article.title }}</ion-card-title>
-        <ion-card-subtitle>{{ article.source.name }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        {{ article.description }}
-      </ion-card-content>
-    
-  }
-</div>
+<ng-container *ngIf="article">
+    <img [src]="article.urlToImage" alt="Imagen de la noticia" />
 
+    <ion-card-header>
+      <ion-card-title>{{ article.title }}</ion-card-title>
+      <ion-card-subtitle>
+       {{ article.source.name }}
+        <span *ngIf="article.author">{{ article.author }}</span>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ article.description }}</p>
+
+      <div class="content">
+        {{ article.content }}
+      </div>
+
+      <p class="date">
+        Publicado: {{ article.publishedAt | date:'medium' }}
+      </p>
+
+      <ion-button fill="clear" size="small" [href]="article.url" target="_blank">
+        Leer más
+      </ion-button>
+    </ion-card-content>
+</ng-container>

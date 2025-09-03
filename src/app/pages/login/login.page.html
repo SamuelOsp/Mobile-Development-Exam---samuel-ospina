@@ -1,48 +1,59 @@
-<ion-header [translucent]="true">
-  <ion-toolbar> </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="login-container">
+  <ion-card>
+    <div class="login-image">
+    <img src="assets/Images/ima.jpg" alt="Login Image" />
+  </div>
+  </ion-card>
+  
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card class="login-card">
+    <ion-card-content>
+      <h1 class="login-title">Login</h1>
 
-  <div class="content-div">
-    <ion-card>
-      <ion-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
-          <ion-item lines="none">
+      <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+        <ion-card class="input-card">
+          <ion-card-content>
             <app-input
               label="Email"
               type="email"
               placeholder="example@exam.com"
-              labelPlacement="floating"
-              [control]="email"
-            ></app-input>
-          </ion-item>
+              formControlName="email"
+            >
+            </app-input>
+          </ion-card-content>
+        </ion-card>
 
-          <ion-item lines="none">
+        <ion-card class="input-card">
+          <ion-card-content>
             <app-input
               label="Password"
               type="password"
               placeholder="*********"
-              labelPlacement="floating"
-              [control]="password"
-            ></app-input>
-          </ion-item>
+              formControlName="password"
+            >
+            </app-input>
+          </ion-card-content>
+        </ion-card>
 
-          <ion-item lines="none">
-            <app-button color="primary" (click)="goToRegister()" value="register"></app-button>
-          </ion-item>
+        <div class="button-group">
+          <app-button
+            color="primary"
+            (click)="goToRegister()"
+            value="Go to Register"
+            class="secondary-button"
+          >
+          </app-button>
 
-          <ion-item lines="none">
-            <app-button type="submit" color="success" value="login" [disable]="loginForm.invalid" >
-            </app-button>
-          </ion-item>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </div>
+          <app-button
+            type="submit"
+            color="primary"
+            value="Login"
+            [disable]="loginForm.invalid"
+            class="primary-button"
+          >
+          </app-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

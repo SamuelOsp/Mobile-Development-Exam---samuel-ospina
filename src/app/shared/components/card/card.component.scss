@@ -1,42 +1,42 @@
 .cards-container {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: 30px !important;
-  padding: 20px !important;
+  gap: 16px !important;
+  padding: 12px !important;
   margin: 0 auto;
-  max-width: 1200px;
+  width: 100% !important;
 
-  // Estilos para cada item del grid
   app-card {
     display: block !important;
     width: 100% !important;
-    height: 100% !important;
-    min-height: 200px; // ← Altura mínima
-    
-    // Debug visual
-    border: 2px dashed #0054e9 !important;
-    background-color: rgba(0, 84, 233, 0.05) !important;
-    
-    // Resetear estilos de Ionic
+    height: auto !important;
+    min-height: 160px !important;
+
     ion-card {
       margin: 0 !important;
-      height: 100% !important;
       width: 100% !important;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      
-      // Debug visual interno
-      border: 1px solid #00e9a3 !important;
+      height: 100% !important;
+      border-radius: 10px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
       background-color: white !important;
     }
   }
 }
 
-// Responsive
+
 @media (max-width: 768px) {
   .cards-container {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    padding: 16px !important;
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 10px !important;
+    padding: 8px !important;
+  }
+
+  app-card {
+    min-height: 140px !important;
+  }
+
+  app-card ion-card img {
+    max-height: 80px !important; 
+    object-fit: cover !important;
   }
 }

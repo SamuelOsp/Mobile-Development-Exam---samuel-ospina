@@ -1,13 +1,13 @@
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); // 2 columnas
-  gap: 16px; // Espacio entre tarjetas
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px; 
   padding: 16px;
   margin: 16px;
 }
 
 .grid-card {
-  height: 150px; // Altura mediana
+  height: 150px; 
   min-height: 150px;
   display: flex;
   flex-direction: column;
@@ -46,10 +46,9 @@
   }
 }
 
-// Responsive para pantallas pequeñas
 @media (max-width: 576px) {
   .grid-container {
-    grid-template-columns: 1fr; // 1 columna en móviles
+    grid-template-columns: 1fr; 
     gap: 12px;
     padding: 12px;
     margin: 12px;
